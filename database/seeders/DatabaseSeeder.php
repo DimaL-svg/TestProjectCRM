@@ -17,11 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        $Customers = Customer::factory(10)->create();
+        Ticket::factory(20)->recycle($Customers)->create();
+        User::factory(5)->create();
     }
 }
