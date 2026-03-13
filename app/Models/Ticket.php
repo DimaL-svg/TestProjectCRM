@@ -5,9 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
-class Ticket extends Model
+use Carbon\Carbon;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+class Ticket extends Model implements HasMedia
 {
-     use HasFactory, Notifiable;
+    use InteractsWithMedia;
+    use HasFactory, Notifiable;
         /**
         * The attributes that are mass assignable.
         *
@@ -20,9 +24,22 @@ class Ticket extends Model
         'status',
         'manager_replied_at',
     ];
-
     public function customer()
     {
         return $this->belongsTo(Customer::class);
+    }
+    public function scopeDaily($query)
+    {
+    return $query->where('created_at', '>=', Carbon::now()->subDay());
+    }
+
+    public function scopeWeekly($query)
+    {
+    return $query->where('created_at', '>=', Carbon::now()->subWeek());
+    }
+
+    public function scopeMonthly($query)
+    {
+    return $query->where('created_at', '>=', Carbon::now()->subMonth());
     }
 }

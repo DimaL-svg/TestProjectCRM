@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $Customers = Customer::factory(10)->create();
-        Ticket::factory(20)->recycle($Customers)->create();
+        $Customers = Customer::factory(20)->create();
+        Ticket::factory(100)->recycle($Customers)->create();
         User::factory(5)->create();
     }
 }

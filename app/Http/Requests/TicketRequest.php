@@ -26,17 +26,13 @@ class TicketRequest extends FormRequest
         'phone'   => 'required|string|regex:/^\+\d{10,15}$/',
         'subject' => 'required|string|max:255',
         'message' => 'required|string',
+        'attachment' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
         ];
     }
     public function messages()
     {
         return [
-        'name.required'=> 'Будь ласка, вкажіть ваше ім’я.',
-        'email.required'   => 'Нам потрібна ваша пошта для зв’язку.',
-        'email.email'      => 'Введіть коректну адресу електронної пошти.',
-        'phone.required'   => 'Вкажіть номер телефону.',
-        'subject.required' => 'Укажіть тему звернення.',
-        'message.required' => 'Напишіть текст повідомлення.',
+        
         ];
     }
 }

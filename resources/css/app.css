@@ -1,11 +1,16 @@
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+@layer components {
+    .admin-table-th {
+        @apply px-4 py-2 border bg-gray-50 text-gray-600 uppercase text-center text-sm font-medium border-gray-200;
+    }
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    .admin-table-td {
+        @apply px-4 py-2 border border-gray-200 text-center break-all align-middle;
+    }
+    .card {
+        @apply bg-white shadow rounded-lg p-4 w-full text-center h-32  hover:shadow-lg transition-shadow duration-300 flex items-center justify-center text-xl;
+    }
 }
